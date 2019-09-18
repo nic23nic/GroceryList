@@ -6,8 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Button buttonViewMeals;
+    private Button buttonViewList;
+    private Button buttonIngredients;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,16 +26,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     private void init(){
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        buttonIngredients = findViewById(R.id.buttonIngredients);
+        buttonViewList = findViewById(R.id.buttonViewList);
+        buttonViewMeals = findViewById(R.id.buttonViewMeals);
 
-
+        buttonViewMeals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toMealViewer();
+            }
+        });
+        buttonViewList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toListViewer();
+            }
+        });
+        buttonIngredients.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toIngredientsViewer();
+            }
+        });
 
 
     }
@@ -57,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,MealViewer.class);
         startActivity(intent);
     }
-
-
+    public void toListViewer(){
+        Intent intent = new Intent(this,ListViewer.class);
+        startActivity(intent);
+    }
+    public void toIngredientsViewer(){
+        Intent intent = new Intent(this,IngredientsViewer.class);
+        startActivity(intent);
+    }
 }
